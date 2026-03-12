@@ -13,12 +13,17 @@ import Footer from "@/components/Footer";
 const Index = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [preselectedService, setPreselectedService] = useState<string>();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
 
   const openBooking = (service?: string) => {
+    if (loading) {
+      toast.info("Please wait while we check your login status...");
+      return;
+    }
+    
     if (!user) {
-      toast.error("Please login or create an account first to book an appointment.");
+      toast.error("You must be logged in to book an appointment.");
       navigate("/login");
       return;
     }

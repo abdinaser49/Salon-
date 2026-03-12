@@ -68,6 +68,12 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
   const handleBack = () => setStep(s => Math.max(s - 1, 1));
 
   const handleConfirm = async () => {
+    if (!user) {
+      toast.error("Error: You must be logged in to confirm a booking.");
+      onClose();
+      return;
+    }
+
     const bookingData = {
       client_id: user?.id,
       name: name,
