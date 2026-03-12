@@ -93,41 +93,41 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white w-full max-w-4xl rounded-lg shadow-2xl overflow-hidden flex flex-col font-sans text-slate-700">
+      <div className="bg-white w-full max-w-4xl max-h-[95vh] rounded-3xl shadow-2xl overflow-hidden flex flex-col font-sans text-slate-700 relative">
         
         {/* Stepper Header */}
-        <div className="flex w-full border-b">
+        <div className="flex w-full border-b shrink-0">
           {steps.map((s) => (
             <div 
               key={s.id}
               className={cn(
-                "flex-1 flex items-center justify-center py-4 gap-3 border-r last:border-r-0 transition-colors",
-                step === s.id ? "bg-[#00bcd4] text-white" : "bg-[#f8f9fa] text-slate-400"
+                "flex-1 flex items-center justify-center py-4 gap-2 border-r last:border-r-0 transition-colors",
+                step === s.id ? "bg-primary text-white" : "bg-[#f8f9fa] text-slate-400"
               )}
             >
               <div className={cn(
-                "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold",
+                "w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold",
                 step === s.id ? "bg-white/20" : "bg-slate-200"
               )}>
                 {s.id}
               </div>
-              <span className="text-sm font-medium hidden sm:inline">{s.label}</span>
+              <span className="text-xs font-bold hidden sm:inline">{s.label}</span>
             </div>
           ))}
         </div>
 
-        {/* Content Area */}
-        <div className="p-8 min-h-[400px]">
+        {/* Content Area - Scrollable */}
+        <div className="p-6 sm:p-8 overflow-y-auto flex-1 custom-scrollbar">
           <AnimatePresence mode="wait">
             {step === 1 && (
-              <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="space-y-8">
-                <h3 className="text-lg font-bold text-slate-800">Please select service:</h3>
+              <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="space-y-6">
+                <h3 className="text-lg font-bold text-slate-800">Fadlan dooro adeegga:</h3>
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-500">Category</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Qaybta</label>
                     <select 
-                      className="w-full p-3 border rounded focus:ring-2 focus:ring-[#00bcd4] outline-none"
+                      className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium"
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
                     >
@@ -136,24 +136,24 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
                       <option>Nails</option>
                     </select>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-500">Service</label>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Adeegga</label>
                     <select 
-                      className="w-full p-3 border rounded focus:ring-2 focus:ring-[#00bcd4] outline-none"
+                      className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium"
                       value={selectedService?.name}
                       onChange={(e) => setSelectedService(services.find(s => s.name === e.target.value) || services[0])}
                     >
                       {services.map(s => <option key={s.name}>{s.name}</option>)}
                     </select>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-500">Employee</label>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Shaqaalaha</label>
                     <select 
-                      className="w-full p-3 border rounded focus:ring-2 focus:ring-[#00bcd4] outline-none"
+                      className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium"
                       value={selectedEmployee}
                       onChange={(e) => setSelectedEmployee(e.target.value)}
                     >
-                      <option>Any</option>
+                      <option>Qof kasta</option>
                       <option>Deeqa Axmed</option>
                       <option>Layla Cali</option>
                       <option>Hodan Maxamed</option>
@@ -162,30 +162,30 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-500">I'm available on or after</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t pt-6">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Taariikhda</label>
                     <Popover>
                       <PopoverTrigger asChild>
-                        <button className="w-full text-left p-3 border rounded hover:bg-slate-50 flex justify-between items-center">
+                        <button className="w-full text-left p-4 bg-slate-50 border-0 rounded-2xl hover:bg-slate-100 flex justify-between items-center text-sm font-medium">
                           {date ? format(date, "PPP") : "Select Date"}
                           <CalendarIcon className="w-4 h-4 text-slate-400" />
                         </button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0">
+                      <PopoverContent className="w-auto p-0 rounded-3xl overflow-hidden border-0 shadow-2xl">
                         <Calendar mode="single" selected={date} onSelect={(d) => d && setDate(d)} initialFocus />
                       </PopoverContent>
                     </Popover>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-500">Start from</label>
-                    <select className="w-full p-3 border rounded focus:ring-2 focus:ring-[#00bcd4] outline-none" value={startTime} onChange={e => setStartTime(e.target.value)}>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Bilowga</label>
+                    <select className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium" value={startTime} onChange={e => setStartTime(e.target.value)}>
                       {timeSlots.map(t => <option key={t}>{t}</option>)}
                     </select>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-500">Finish by</label>
-                    <select className="w-full p-3 border rounded focus:ring-2 focus:ring-[#00bcd4] outline-none" value={endTime} onChange={e => setEndTime(e.target.value)}>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Dhammaadka</label>
+                    <select className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium" value={endTime} onChange={e => setEndTime(e.target.value)}>
                       {timeSlots.map(t => <option key={t}>{t}</option>)}
                     </select>
                   </div>
@@ -195,18 +195,18 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
 
             {step === 2 && (
               <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="space-y-6">
-                <h3 className="text-lg font-bold text-slate-800">Confirm Service Selection</h3>
-                <div className="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                <h3 className="text-lg font-bold text-slate-800">Xaqiiji Adeegga</h3>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                    <div className="flex justify-between mb-4">
-                      <span className="text-slate-500">Selected Treatment</span>
-                      <span className="font-bold text-[#00bcd4]">{selectedService.name}</span>
+                      <span className="text-slate-500 text-sm">Adeegga la doortay</span>
+                      <span className="font-bold text-primary">{selectedService.name}</span>
                    </div>
                    <div className="flex justify-between mb-4">
-                      <span className="text-slate-500">Duration</span>
-                      <span className="font-medium">{selectedService.duration}</span>
+                      <span className="text-slate-500 text-sm">Wakhtiga</span>
+                      <span className="font-medium text-sm">{selectedService.duration}</span>
                    </div>
                    <div className="flex justify-between text-xl font-bold pt-4 border-t">
-                      <span>Price</span>
+                      <span>Qiimaha</span>
                       <span className="text-slate-900">${selectedService.price}</span>
                    </div>
                 </div>
@@ -215,61 +215,70 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
 
             {step === 3 && (
               <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="space-y-6">
-                <h3 className="text-lg font-bold text-slate-800">Your Details:</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-500">Full Name</label>
-                    <input type="text" className="w-full p-3 border rounded focus:ring-2 focus:ring-[#00bcd4] outline-none" value={name} onChange={e => setName(e.target.value)} placeholder="Enter your name" />
+                <h3 className="text-lg font-bold text-slate-800">Macluumaadkaaga:</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Magaca oo buuxa</label>
+                    <input type="text" className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium" value={name} onChange={e => setName(e.target.value)} placeholder="Enter your name" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-500">Phone Number</label>
-                    <input type="tel" className="w-full p-3 border rounded focus:ring-2 focus:ring-[#00bcd4] outline-none" value={phone} onChange={e => setPhone(e.target.value)} placeholder="061XXXXXXX" />
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Lambarka Taleefanka</label>
+                    <input type="tel" className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium" value={phone} onChange={e => setPhone(e.target.value)} placeholder="061XXXXXXX" />
                   </div>
                 </div>
               </motion.div>
             )}
 
             {step === 4 && (
-              <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="space-y-6 flex flex-col items-center">
-                <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mb-4">
+              <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="space-y-6 flex flex-col items-center py-4">
+                <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mb-2 shadow-inner">
                   <CreditCard className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800">Payment Confirmation</h3>
-                <p className="text-slate-500 text-center max-w-md">Please complete the payment of <strong>${selectedService.price}</strong> to confirm your appointment.</p>
-                <div className="w-full max-w-sm bg-slate-950 text-white p-6 rounded-xl space-y-4">
-                   <div className="flex justify-between text-sm opacity-60">
-                      <span>Merchant</span>
+                <h3 className="text-2xl font-bold text-slate-800 text-center">Xaqiijinta Lacag-bixinta</h3>
+                <p className="text-slate-500 text-center max-w-md text-sm">Fadlan bixi lacag dhan <strong>${selectedService.price}</strong> si ballantaadu u xaqiijisanto.</p>
+                <div className="w-full max-w-sm bg-zinc-900 text-white p-6 rounded-3xl space-y-4 shadow-xl">
+                   <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest opacity-50">
+                      <span>Adeegga</span>
                       <span>EVC Plus</span>
                    </div>
-                   <div className="text-center text-3xl font-mono tracking-wider py-2">
+                   <div className="text-center text-3xl font-mono font-bold tracking-[0.2em] py-2">
                       {PAYMENT_MERCHANT}
                    </div>
-                   <button onClick={() => setPaid(true)} className={cn("w-full py-4 rounded font-bold uppercase tracking-widest", paid ? "bg-emerald-500" : "bg-primary")}>
-                      {paid ? "Payment Verified" : "I have paid"}
+                   <button onClick={() => setPaid(true)} className={cn("w-full py-4 rounded-2xl font-bold uppercase tracking-widest text-xs transition-all", paid ? "bg-emerald-500" : "bg-primary shadow-lg shadow-primary/30")}>
+                      {paid ? "Lacagta waa la xaqiijiyay" : "Waan bixiyay lacagta"}
                    </button>
                 </div>
               </motion.div>
             )}
 
             {step === 5 && (
-              <motion.div initial={{opacity:0, scale:0.9}} animate={{opacity:1, scale:1}} className="flex flex-col items-center py-10">
-                <div className="w-20 h-20 bg-emerald-500 text-white rounded-full flex items-center justify-center mb-6 shadow-xl">
+              <motion.div initial={{opacity:0, scale:0.9}} animate={{opacity:1, scale:1}} className="flex flex-col items-center py-6">
+                <div className="w-20 h-20 bg-emerald-500 text-white rounded-full flex items-center justify-center mb-6 shadow-xl shadow-emerald-500/20">
                   <Check className="w-10 h-10 stroke-[3px]" />
                 </div>
-                <h3 className="text-3xl font-bold text-slate-900 mb-2">Done!</h3>
-                <p className="text-slate-500 mb-8">Thank you! Your booking is complete.</p>
-                <div className="w-full max-w-sm border rounded-xl overflow-hidden mb-8">
-                   <div className="bg-slate-50 p-4 border-b">
-                      <p className="text-xs font-bold uppercase text-slate-400">Appointment Details</p>
+                <h3 className="text-3xl font-bold text-slate-900 mb-2">Waa laguu dhameeyay!</h3>
+                <p className="text-slate-500 mb-6 text-center">Waad ku mahadsantahay doorashadaada! Ballantaadu waa diyaar.</p>
+                <div className="w-full max-w-sm bg-slate-50 rounded-3xl overflow-hidden mb-8 border border-slate-100">
+                   <div className="p-4 border-b bg-white">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Faahfaahinta Ballanta</p>
                    </div>
-                   <div className="p-4 space-y-3 text-sm">
-                      <div className="flex justify-between"><span>Service</span><span className="font-bold">{selectedService.name}</span></div>
-                      <div className="flex justify-between"><span>Date</span><span className="font-bold">{format(date, "PPP")}</span></div>
-                      <div className="flex justify-between"><span>Time</span><span className="font-bold">{startTime}</span></div>
+                   <div className="p-5 space-y-4 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Adeegga</span>
+                        <span className="font-bold text-slate-900">{selectedService.name}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Taariikhda</span>
+                        <span className="font-bold text-slate-900">{format(date, "PPP")}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Wakhtiga</span>
+                        <span className="font-bold text-slate-900">{startTime}</span>
+                      </div>
                    </div>
                 </div>
-                <button onClick={resetAndClose} className="bg-[#00bcd4] text-white px-12 py-3 rounded-full font-bold shadow-lg hover:shadow-[#00bcd4]/30 transition-shadow">
-                  Close
+                <button onClick={resetAndClose} className="bg-primary text-white px-12 py-4 rounded-full font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-transform">
+                  Xir Daaaqadda
                 </button>
               </motion.div>
             )}
@@ -278,19 +287,19 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
 
         {/* Footer Buttons */}
         {step < 5 && (
-          <div className="p-8 border-t bg-[#fdfdfd] flex justify-between items-center">
+          <div className="p-6 sm:p-8 border-t bg-[#fdfdfd] flex justify-between items-center shrink-0">
             <button 
               onClick={handleBack}
               disabled={step === 1}
-              className="bg-[#00bcd4] text-white px-10 py-3 rounded text-sm font-bold uppercase tracking-wider disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#0097a7] transition-colors"
+              className="bg-slate-100 text-slate-500 px-8 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-200 transition-colors"
             >
-              Previous
+              Dib u noqo
             </button>
             <button 
               onClick={step === 4 ? handleConfirm : handleNext}
-              className="bg-[#e91e63] text-white px-10 py-3 rounded text-sm font-bold uppercase tracking-wider hover:bg-[#c2185b] transition-colors"
+              className="bg-primary text-white px-8 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all"
             >
-              {step === 4 ? "Complete" : "Next"}
+              {step === 4 ? "Dhameystir" : "Xiga"}
             </button>
           </div>
         )}
