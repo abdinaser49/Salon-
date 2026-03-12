@@ -14,7 +14,7 @@ const Footer = () => {
             <img src={logo} alt="Qurux Dumar Logo" className="h-24 w-auto mb-6 transition-transform hover:scale-105" />
             <h3 className="font-display text-2xl text-background mb-4">Qurux Dumar Beauty Salon</h3>
             <p className="font-body text-sm leading-relaxed">
-              Hoyga quruxda ee bartamaha Muqdisho, halkaas oo faahfaahin kasta loo qaabeeyey si aad u dareento qof gaar ah.
+              Professional beauty home in the heart of Mogadishu, where every detail is designed to make you feel special.
             </p>
           </div>
           <div className="space-y-4 font-body text-sm">
@@ -38,15 +38,15 @@ const Footer = () => {
             <div className="flex items-start gap-3">
               <Clock className="w-4 h-4 mt-0.5 text-gold-light" />
               <div>
-                <p>Sabti – Khamiis: 9:00 AM – 7:00 PM</p>
-                <p>Jimce: 10:30 AM – 7:00 PM (Salaadda kadib)</p>
-                <p className="mt-2 text-gold-light font-medium tracking-wide text-xs">BALLAN-DHIGASHADA ONLINE-KA: 24/7 WAY FURAN TAHAY</p>
+                <p>Saturday – Thursday: 9:00 AM – 7:00 PM</p>
+                <p>Friday: 10:30 AM – 7:00 PM (After prayer)</p>
+                <p className="mt-2 text-gold-light font-medium tracking-wide text-xs">ONLINE BOOKING: OPEN 24/7</p>
               </div>
             </div>
           </div>
         </div>
         <div className="border-t border-background/10 pt-8 text-center font-body text-xs text-background/40">
-          © 2024 Qurux Dumar Beauty Salon. Xuquuqda oo dhan waa dhowran tahay.
+          © 2024 Qurux Dumar Beauty Salon. All rights reserved.
         </div>
       </div>
     </footer>

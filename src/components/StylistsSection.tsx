@@ -5,10 +5,10 @@ import stylist3 from "@/assets/staf3.jpeg";
 import stylist4 from "@/assets/st4.jpeg";
 
 const stylists = [
-  { name: "Deeqa Axmed", role: "Farshaxanka Sare ee Timaha", image: stylist1 },
-  { name: "Layla Cali", role: "Nakhshadeeyaha Ciddiyaha", image: stylist2 },
-  { name: "Hodan Maxamed", role: "Khabiirka Daryeelka Maqaarka", image: stylist3 },
-  { name: "Sahra Cabdi", role: "Khabiirka Cilaanka & Timaha Bixinta", image: stylist4 },
+  { name: "Deeqa Axmed", role: "Senior Hair Stylist", image: stylist1 },
+  { name: "Layla Cali", role: "Nail Artist", image: stylist2 },
+  { name: "Hodan Maxamed", role: "Skin Care Expert", image: stylist3 },
+  { name: "Sahra Cabdi", role: "Henna & Hair Removal Expert", image: stylist4 },
 ];
 
 const StylistsSection = () => {
@@ -21,7 +21,7 @@ const StylistsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="font-serif text-[#e91e63] text-4xl md:text-5xl font-medium mb-4">Kooxdayada Xirfadda Leh</h2>
+          <h2 className="font-serif text-[#e91e63] text-4xl md:text-5xl font-medium mb-4">Our Professional Team</h2>
           <div className="w-24 h-[1px] bg-[#e91e63]/30 mx-auto" />
         </motion.div>
 

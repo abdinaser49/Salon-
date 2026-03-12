@@ -124,8 +124,8 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
             className="md:hidden bg-background border-b border-border overflow-hidden"
           >
             <div className="px-6 py-6 space-y-4 font-body text-sm">
-              <button onClick={() => scrollTo("services")} className="block w-full text-left py-2 font-medium hover:text-primary transition-colors">Adeegyada</button>
-              <button onClick={() => scrollTo("team")} className="block w-full text-left py-2 font-medium hover:text-primary transition-colors">Shaqaalaha</button>
+              <button onClick={() => scrollTo("services")} className="block w-full text-left py-2 font-medium hover:text-primary transition-colors">Services</button>
+              <button onClick={() => scrollTo("team")} className="block w-full text-left py-2 font-medium hover:text-primary transition-colors">Team</button>
               
               {isAdmin ? (
                 <Link 
@@ -134,7 +134,7 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
                   className="flex items-center gap-2 w-full text-left py-2 font-medium text-primary"
                 >
                   <LayoutDashboard className="w-4 h-4" />
-                  Dashboard-ka
+                  Dashboard
                 </Link>
               ) : (
                 <Link 
@@ -143,7 +143,7 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
                   className="flex items-center gap-2 w-full text-left py-2 font-medium hover:text-primary transition-colors"
                 >
                   <LogIn className="w-4 h-4" />
-                  Soo Gal
+                  Login
                 </Link>
               )}
 
