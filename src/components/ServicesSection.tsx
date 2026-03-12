@@ -1,0 +1,118 @@
+import { motion } from "framer-motion";
+import { Scissors, Sparkles, Hand, Leaf, Bath, Flower2 } from "lucide-react";
+
+const services = [
+  { 
+    name: "Haircut & Styling", 
+    description: "Professional cutting, coloring, and styling services tailored to your face shape and personal style.", 
+    icon: Scissors 
+  },
+  { 
+    name: "Makeup", 
+    description: "Expert makeup application for weddings, parties, and special events using premium products.", 
+    icon: Sparkles 
+  },
+  { 
+    name: "Manicure & Pedicure", 
+    description: "Complete hand and foot care including nail shaping, cuticle treatment, and artistic polishing.", 
+    icon: Hand 
+  },
+  { 
+    name: "Skin Care", 
+    description: "Rejuvenating facial treatments designed to restore your skin's natural glow and hydration.", 
+    icon: Leaf 
+  },
+  { 
+    name: "Body Treatment", 
+    description: "Full body exfoliation and nourishment for smooth, healthy-looking skin all year round.", 
+    icon: Bath 
+  },
+  { 
+    name: "Massage", 
+    description: "Relaxing body therapy to reduce stress, tension, and promote overall physical well-being.", 
+    icon: Flower2
+  },
+];
+
+interface ServicesSectionProps {
+  onSelectService: (serviceName: string) => void;
+}
+
+const ServicesSection = ({ onSelectService }: ServicesSectionProps) => {
+  return (
+    <section id="services" className="py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <h2 className="font-serif text-[#e91e63] text-4xl md:text-5xl font-medium mb-4">Our Premium Services</h2>
+          
+          {/* Lotus Decoration */}
+          <div className="flex items-center justify-center gap-4 mb-8 text-[#e91e63]/40">
+            <div className="h-[1px] w-12 bg-gradient-to-l from-current to-transparent" />
+            <div className="relative">
+              <Flower2 className="w-8 h-8 text-[#e91e63]" />
+              <div className="absolute -inset-2 border border-current rounded-full opacity-20 scale-150" />
+            </div>
+            <div className="h-[1px] w-12 bg-gradient-to-r from-current to-transparent" />
+          </div>
+
+          <p className="max-w-2xl mx-auto text-slate-500 text-sm md:text-base leading-relaxed font-light italic">
+            "Curated beauty treatments designed to enhance your natural elegance and restore your inner peace."
+          </p>
+        </motion.div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 border-t border-l border-slate-100">
+          {services.map((service, i) => (
+            <motion.div
+              key={service.name}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              whileHover={{ 
+                y: -15,
+                scale: 1.02,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+              }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              onClick={() => onSelectService(service.name)}
+              className="group relative p-12 text-center border-r border-b border-slate-100 transition-all duration-500 cursor-pointer hover:bg-slate-50/50"
+            >
+              <div className="flex flex-col items-center justify-center space-y-6">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center text-[#e91e63] transition-transform duration-500 group-hover:scale-110">
+                  <service.icon className="w-10 h-10 stroke-[1.5px]" />
+                </div>
+                
+                <h3 className="font-serif text-2xl text-slate-800 font-medium group-hover:text-[#e91e63] transition-colors">
+                  {service.name}
+                </h3>
+                
+                <p className="text-slate-400 text-sm leading-relaxed max-w-[260px] mx-auto">
+                  {service.description}
+                </p>
+                
+                {/* Subtle Hover Indicator */}
+                <div className="w-8 h-[1px] bg-[#e91e63] scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+// Helper function locally since we are in a component
+function cn(...classes: (string | boolean | undefined)[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export default ServicesSection;
+
