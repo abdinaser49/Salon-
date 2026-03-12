@@ -121,11 +121,11 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="space-y-6">
-                <h3 className="text-lg font-bold text-slate-800">Fadlan dooro adeegga:</h3>
+                <h3 className="text-lg font-bold text-slate-800">Please select service:</h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Qaybta</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Category</label>
                     <select 
                       className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium"
                       value={selectedCategory}
@@ -137,7 +137,7 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
                     </select>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Adeegga</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Service</label>
                     <select 
                       className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium"
                       value={selectedService?.name}
@@ -147,13 +147,13 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
                     </select>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Shaqaalaha</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Employee</label>
                     <select 
                       className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium"
                       value={selectedEmployee}
                       onChange={(e) => setSelectedEmployee(e.target.value)}
                     >
-                      <option>Qof kasta</option>
+                      <option>Any</option>
                       <option>Deeqa Axmed</option>
                       <option>Layla Cali</option>
                       <option>Hodan Maxamed</option>
@@ -164,7 +164,7 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t pt-6">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Taariikhda</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Date</label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <button className="w-full text-left p-4 bg-slate-50 border-0 rounded-2xl hover:bg-slate-100 flex justify-between items-center text-sm font-medium">
@@ -178,13 +178,13 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
                     </Popover>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Bilowga</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Start from</label>
                     <select className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium" value={startTime} onChange={e => setStartTime(e.target.value)}>
                       {timeSlots.map(t => <option key={t}>{t}</option>)}
                     </select>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Dhammaadka</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Finish by</label>
                     <select className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium" value={endTime} onChange={e => setEndTime(e.target.value)}>
                       {timeSlots.map(t => <option key={t}>{t}</option>)}
                     </select>
@@ -195,18 +195,18 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
 
             {step === 2 && (
               <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="space-y-6">
-                <h3 className="text-lg font-bold text-slate-800">Xaqiiji Adeegga</h3>
+                <h3 className="text-lg font-bold text-slate-800">Confirm Service</h3>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                    <div className="flex justify-between mb-4">
-                      <span className="text-slate-500 text-sm">Adeegga la doortay</span>
+                      <span className="text-slate-500 text-sm">Selected treatment</span>
                       <span className="font-bold text-primary">{selectedService.name}</span>
                    </div>
                    <div className="flex justify-between mb-4">
-                      <span className="text-slate-500 text-sm">Wakhtiga</span>
+                      <span className="text-slate-500 text-sm">Duration</span>
                       <span className="font-medium text-sm">{selectedService.duration}</span>
                    </div>
                    <div className="flex justify-between text-xl font-bold pt-4 border-t">
-                      <span>Qiimaha</span>
+                      <span>Price</span>
                       <span className="text-slate-900">${selectedService.price}</span>
                    </div>
                 </div>
@@ -215,14 +215,14 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
 
             {step === 3 && (
               <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="space-y-6">
-                <h3 className="text-lg font-bold text-slate-800">Macluumaadkaaga:</h3>
+                <h3 className="text-lg font-bold text-slate-800">Your Details:</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Magaca oo buuxa</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
                     <input type="text" className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium" value={name} onChange={e => setName(e.target.value)} placeholder="Enter your name" />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Lambarka Taleefanka</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Phone Number</label>
                     <input type="tel" className="w-full p-4 bg-slate-50 border-0 rounded-2xl focus:ring-2 focus:ring-primary outline-none text-sm font-medium" value={phone} onChange={e => setPhone(e.target.value)} placeholder="061XXXXXXX" />
                   </div>
                 </div>
@@ -234,18 +234,18 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
                 <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mb-2 shadow-inner">
                   <CreditCard className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800 text-center">Xaqiijinta Lacag-bixinta</h3>
-                <p className="text-slate-500 text-center max-w-md text-sm">Fadlan bixi lacag dhan <strong>${selectedService.price}</strong> si ballantaadu u xaqiijisanto.</p>
+                <h3 className="text-2xl font-bold text-slate-800 text-center">Payment Confirmation</h3>
+                <p className="text-slate-500 text-center max-w-md text-sm">Please complete the payment of <strong>${selectedService.price}</strong> to confirm your appointment.</p>
                 <div className="w-full max-w-sm bg-zinc-900 text-white p-6 rounded-3xl space-y-4 shadow-xl">
                    <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest opacity-50">
-                      <span>Adeegga</span>
+                      <span>Merchant</span>
                       <span>EVC Plus</span>
                    </div>
                    <div className="text-center text-3xl font-mono font-bold tracking-[0.2em] py-2">
                       {PAYMENT_MERCHANT}
                    </div>
                    <button onClick={() => setPaid(true)} className={cn("w-full py-4 rounded-2xl font-bold uppercase tracking-widest text-xs transition-all", paid ? "bg-emerald-500" : "bg-primary shadow-lg shadow-primary/30")}>
-                      {paid ? "Lacagta waa la xaqiijiyay" : "Waan bixiyay lacagta"}
+                      {paid ? "Payment Verified" : "I have paid"}
                    </button>
                 </div>
               </motion.div>
@@ -256,29 +256,29 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
                 <div className="w-20 h-20 bg-emerald-500 text-white rounded-full flex items-center justify-center mb-6 shadow-xl shadow-emerald-500/20">
                   <Check className="w-10 h-10 stroke-[3px]" />
                 </div>
-                <h3 className="text-3xl font-bold text-slate-900 mb-2">Waa laguu dhameeyay!</h3>
-                <p className="text-slate-500 mb-6 text-center">Waad ku mahadsantahay doorashadaada! Ballantaadu waa diyaar.</p>
+                <h3 className="text-3xl font-bold text-slate-900 mb-2">Done!</h3>
+                <p className="text-slate-500 mb-6 text-center">Thank you! Your booking is complete.</p>
                 <div className="w-full max-w-sm bg-slate-50 rounded-3xl overflow-hidden mb-8 border border-slate-100">
                    <div className="p-4 border-b bg-white">
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Faahfaahinta Ballanta</p>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Appointment Details</p>
                    </div>
                    <div className="p-5 space-y-4 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-slate-500">Adeegga</span>
+                        <span className="text-slate-500">Service</span>
                         <span className="font-bold text-slate-900">{selectedService.name}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-slate-500">Taariikhda</span>
+                        <span className="text-slate-500">Date</span>
                         <span className="font-bold text-slate-900">{format(date, "PPP")}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-slate-500">Wakhtiga</span>
+                        <span className="text-slate-500">Time</span>
                         <span className="font-bold text-slate-900">{startTime}</span>
                       </div>
                    </div>
                 </div>
                 <button onClick={resetAndClose} className="bg-primary text-white px-12 py-4 rounded-full font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-transform">
-                  Xir Daaaqadda
+                  Close
                 </button>
               </motion.div>
             )}
@@ -293,13 +293,13 @@ const BookingModal = ({ isOpen, onClose, preselectedService }: BookingModalProps
               disabled={step === 1}
               className="bg-slate-100 text-slate-500 px-8 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-200 transition-colors"
             >
-              Dib u noqo
+              Previous
             </button>
             <button 
               onClick={step === 4 ? handleConfirm : handleNext}
               className="bg-primary text-white px-8 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all"
             >
-              {step === 4 ? "Dhameystir" : "Xiga"}
+              {step === 4 ? "Complete" : "Next"}
             </button>
           </div>
         )}

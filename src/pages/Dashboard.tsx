@@ -678,7 +678,7 @@ const Dashboard = () => {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                   <div>
                     <h1 className="font-display text-4xl font-bold tracking-tight text-zinc-900 mb-2">Payments</h1>
-                    <p className="text-zinc-500 font-body text-base">Maamulka lacagaha iyo dakhliga</p>
+                    <p className="text-zinc-500 font-body text-base">Manage income and payments</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <button 
